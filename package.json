@@ -1,0 +1,1 @@
+{"dependencies":{"bcryptjs":"2.4.3","better-sqlite3":"12.11.1","express":"4.21.2","express-session":"1.18.1"},"description":"Backspace — a MySpace-inspired social prototype. Old school meets new school.","engines":{"node":">=18"},"main":"server.js","name":"backspace","scripts":{"seed":"node seed.js","start":"node server.js"},"version":"1.0.0"}
