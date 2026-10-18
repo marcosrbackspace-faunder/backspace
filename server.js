@@ -1,7 +1,7 @@
 'use strict';
 
 //Auto-seed on first run
-const_db = require('./');
+const_db = require('./db');
 if(_db.prepare('SELECT COUNT(*) AS c FROM users').get().c === 0) {
   console.log('Empty database detected - auto-seeding demo content...');
   require('./seed');
