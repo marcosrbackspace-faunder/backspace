@@ -1,4 +1,11 @@
 'use strict';
+
+//Auto-seed on first run
+const_db = require('./');
+if(_db.prepare('SELECT COUNT(*) AS c FROM users').get().c === 0) {
+  console.log('Empty database detected - auto-seeding demo content...');
+  require('./seed');
+}
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
