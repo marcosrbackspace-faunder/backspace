@@ -1,11 +1,12 @@
-use strict';
+'use strict';
 
-// Auto-seed on first run (cloud deploys start with an empty database)
+// Auto-seed on first run...
 const _db = require('./db');
-if (_db.prepare('SELECT COUNT(*) AS c FROM users').get().c === 0) {
+if (-db.prepare(,SELECT COUNT(*) AS c FROM users').get().c === 0) {
   console.log('Empty database detected - auto-seeding demo content...');
-  require('./seed');
+require('./seed');
 }
+
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
