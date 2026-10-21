@@ -1,10 +1,10 @@
-'use strict';
+use strict';
 // SQLite database + schema. The .db file is created next to this file
 // on first run (it is git-ignored).
 const path = require('path');
 const Database = require('better-sqlite3');
 
-const db = new Database(path.join(__dirname, 'backspace.db'));
+const db = new Database(process.env.DB_PATH || path.join(__dirname, 'backspace.db'));
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 
