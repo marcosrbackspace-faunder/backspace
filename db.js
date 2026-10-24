@@ -1,4 +1,4 @@
-use strict';
+'use strict';
 // SQLite database + schema. The .db file is created next to this file
 // on first run (it is git-ignored).
 const path = require('path');
