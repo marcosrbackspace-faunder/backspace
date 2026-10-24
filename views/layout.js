@@ -44,7 +44,8 @@ function avatar(name, size) {
 }
 
 // opts: { user, title, body, theme (accent key), active }
-function page(opts) {
+function page(opts, legacyBoody) {
+  if (typeof opts === 'string') return legacyBoody;
   const { user, title, body, active } = opts;
   const accent = THEMES[opts.theme] || THEMES.blue;
 
