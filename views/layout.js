@@ -70,7 +70,7 @@ function page(opts, legacyBoody) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)} · backspace</title>
+<title>${esc(title)} · backMyspace</title>
 <link rel="stylesheet" href="/style.css">
 <style>:root { --accent: ${accent}; }</style>
 </head>
