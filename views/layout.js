@@ -76,13 +76,13 @@ function page(opts, legacyBoody) {
 </head>
 <body>
 <header class="topbar">
-  <a class="logo" href="/"><span class="key">⌫</span> backspace</a>
+  <a class="logo" href="/"><span class="key">⌫</span> backMyspace</a>
   <nav>${nav}</nav>
 </header>
 <main class="wrap">
 ${body}
 </main>
-<footer class="foot">backspace · old school meets new school · prototype</footer>
+<footer class="foot">backMyspace · old school meets new school </footer>
 <script src="/app.js"></script>
 </body>
 </html>`;
