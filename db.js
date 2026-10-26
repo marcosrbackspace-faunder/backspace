@@ -69,4 +69,5 @@ CREATE INDEX IF NOT EXISTS idx_posts_user ON posts(user_id);
 CREATE INDEX IF NOT EXISTS idx_messages_pair ON messages(sender_id, receiver_id);
 `);
 
+try { db.exec("ALTER TABLE users ADD COLUMN song_url TEXT NOT NULL DEFAULT ''"); } catch (e) { /* already exists */ }
 module.exports = db;
