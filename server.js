@@ -27,13 +27,14 @@ app.use(session({
 const Q = {
   userById: db.prepare('SELECT * FROM users WHERE id = ?'),
   userByUsername: db.prepare('SELECT * FROM users WHERE username = ?'),
-  insertUser: db.prepare('INSERT INTO users (username, password_hash, display_name) VALUES (?, ?, ?)',
-updateProfile: db.prepare('UPDATE users SET display_name = ?, bio = ?, theme_color = ?, song_title = ?, song_url = ? WHERE id = ?'),
-friendsOf: db.prepare('                     
+  insertUser: db.prepare('INSERT INTO users (username, password_hash, display_name) VALUES (?, ?, ?)'),
+  updateProfile: db.prepare('UPDATE users SET display_name = ?, bio = ?, theme_color = ?, song_title = ? WHERE id = ?'),
+
+  friendsOf: db.prepare(`
     SELECT u.id, u.username, u.display_name, f.position FROM friends f
     JOIN users u ON u.id = f.friend_id
     WHERE f.user_id = ? ORDER BY f.position ASC, f.id ASC`),
-   frienrow: db.prepare('SELECT * FROM friends WHERE user_id = ? AND friend_id = ?'),
+  friendRow: db.prepare('SELECT * FROM friends WHERE user_id = ? AND friend_id = ?'),
   friendCount: db.prepare('SELECT COUNT(*) AS n FROM friends WHERE user_id = ?'),
   maxPosition: db.prepare('SELECT COALESCE(MAX(position), -1) AS m FROM friends WHERE user_id = ?'),
   addFriend: db.prepare('INSERT INTO friends (user_id, friend_id, position) VALUES (?, ?, ?)'),
@@ -49,6 +50,9 @@ friendsOf: db.prepare('
       (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id) AS like_count,
       (SELECT COUNT(*) FROM comments c WHERE c.post_id = p.id) AS comment_count,
       (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id AND l.user_id = ?) AS liked_by_me,
+      -- light algorithm: affinity = how much YOU (the viewer) have interacted with this
+      -- author's posts (likes + comments). Recency still dominates; friends you engage
+      -- with get a small float-up. Nothing more. (marcos: keep it light)
       (SELECT COUNT(*) FROM likes l JOIN posts p2 ON p2.id = l.post_id WHERE p2.user_id = p.user_id AND l.user_id = ?)
       + (SELECT COUNT(*) FROM comments c JOIN posts p3 ON p3.id = c.post_id WHERE p3.user_id = p.user_id AND c.user_id = ?) AS affinity
     FROM posts p JOIN users u ON u.id = p.user_id
