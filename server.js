@@ -29,11 +29,11 @@ const Q = {
   userByUsername: db.prepare('SELECT * FROM users WHERE username = ?'),
   insertUser: db.prepare('INSERT INTO users (username, password_hash, display_name) VALUES (?, ?, ?)'
 updateProfile: db.prepare('UPDATE users SET display_name = ?, bio = ?, theme_color = ?, song_title = ?, song_url = ? WHERE id = ?'),
-                      
+friendaOf: db.prepare('                     
     SELECT u.id, u.username, u.display_name, f.position FROM friends f
     JOIN users u ON u.id = f.friend_id
     WHERE f.user_id = ? ORDER BY f.position ASC, f.id ASC`),
-  riendRow: db.prepare('SELECT * FROM friends WHERE user_id = ? AND friend_id = ?'),
+   fvriendRow: db.prepare('SELECT * FROM friends WHERE user_id = ? AND friend_id = ?'),
   friendCount: db.prepare('SELECT COUNT(*) AS n FROM friends WHERE user_id = ?'),
   maxPosition: db.prepare('SELECT COALESCE(MAX(position), -1) AS m FROM friends WHERE user_id = ?'),
   addFriend: db.prepare('INSERT INTO friends (user_id, friend_id, position) VALUES (?, ?, ?)'),
