@@ -59,8 +59,10 @@ function profilePage(me, owner, friends, posts, isFriend, error) {
          </form>`;
   }
 
-  const song = owner.song_title
-    ? `<div class="song">♪ <span class="muted">now playing:</span> ${esc(owner.song_title)}</div>` : '';
+  const yt = (String(owner.song_url || '').match(/(?:youtube\.com\/(?:watch\?.*v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/) || [])[1] || null;
+  const song = yt
+    ? `<div class="song">♪ <span class="muted">now playing:</span> ${esc(owner.song_title || 'untitled')}<br><iframe style="width:100%;max-width:420px" height="120" src="https://www.youtube.com/embed/${yt}" title="profile song" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`
+    : (owner.song_title ? `<div class="song">♪ <span class="muted">now playing:</span> ${esc(owner.song_title)}</div>` : '');
 
   const theirPosts = posts.length
     ? posts.map(p => postCard(p, me)).join('\n')
