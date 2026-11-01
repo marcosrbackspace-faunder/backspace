@@ -214,7 +214,8 @@ app.post('/settings', requireLogin, (req, res) => {
   const song = String(req.body.song_title || '').trim().slice(0, 100);
   let theme = String(req.body.theme_color || 'blue');
   if (!THEMES[theme]) theme = 'blue';
-  Q.updateProfile.run(displayName || req.user.username, bio, theme, song, req.user.id);
+  const songUrl = String(req.body.song_url || '').trim().slice(0, 200);
+  Q.updateProfile.run(displayName || req.user.username, bio, theme, song, songUrl, req.user.id);
   req.user = Q.userById.get(req.user.id);
   res.send(settingsPage(req.user, null, 'Saved. Looking good.'));
 });
