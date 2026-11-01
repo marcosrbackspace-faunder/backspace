@@ -28,7 +28,7 @@ const Q = {
   userById: db.prepare('SELECT * FROM users WHERE id = ?'),
   userByUsername: db.prepare('SELECT * FROM users WHERE username = ?'),
   insertUser: db.prepare('INSERT INTO users (username, password_hash, display_name) VALUES (?, ?, ?)'),
-  updateProfile: db.prepare('UPDATE users SET display_name = ?, bio = ?, theme_color = ?, song_title = ? WHERE id = ?'),
+  updateProfile: db.prepare('UPDATE users SET display_name = ?, bio = ?, theme_color = ?, song_title = ?, song_url = ? WHERE id = ?'),
 
   friendsOf: db.prepare(`
     SELECT u.id, u.username, u.display_name, f.position FROM friends f
