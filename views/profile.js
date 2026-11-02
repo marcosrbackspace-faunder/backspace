@@ -108,6 +108,7 @@ function settingsPage(user, error, notice) {
         <label>Bio<textarea name="bio" rows="3" maxlength="200">${esc(user.bio)}</textarea></label>
         <label>Profile song<input name="song_title" maxlength="100" value="${esc(user.song_title)}" placeholder="What plays on your page?"></label>
         <lable>YouTube link<input name="song_url" maxlength="200" value="${esc(user.song_url)}" placeholder="https://youtube.com/watch?v=..."></label>
+        <label>Background image link<input name="bg_url" maxlength=""200" value="${esc(user.bg_url)}" ...></lable>
         <fieldset>
           <legend>Theme color</legend>
           <div class="swatches">${swatches}</div>
