@@ -71,7 +71,7 @@ function profilePage(me, owner, friends, posts, isFriend, error) {
 
   const body = `
     ${err}
-    <section class="card profile-head">
+    <section class="card profile-head"${bg}>
       <div class="ph-top">
         ${avatar(owner.display_name || owner.username, 72)}
         <div>
