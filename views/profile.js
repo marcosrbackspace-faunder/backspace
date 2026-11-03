@@ -65,6 +65,7 @@ function profilePage(me, owner, friends, posts, isFriend, error) {
     : (owner.song_title ? `<div class="song">♪ <span class="muted">now playing:</span> ${esc(owner.song_title)}</div>` : '');
 
   const theirPosts = posts.length
+    const bg = owner.bg_url ? ` style="background-image:url('${esc(owner.bg_url)}');background-size:cover;background-position:center;min-height:260px"` : ''
     ? posts.map(p => postCard(p, me)).join('\n')
     : `<div class="card"><p class="muted">No posts yet.</p></div>`;
 
