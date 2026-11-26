@@ -49,6 +49,7 @@ function homePage(user, posts, error) {
       <h1>⌫ The Feed</h1>
       ${err}
       <form method="post" action="/posts"enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
         <textarea name="body" rows="3" maxlength="500" placeholder="What's on your mind, ${esc(user.display_name || user.username)}?" required></textarea>
         <button type="submit">Post</button>
       </form>
