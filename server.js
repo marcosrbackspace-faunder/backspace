@@ -28,6 +28,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(UPLOAD_DIR));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'backspace-dev-secret-change-me',
   resave: false,
