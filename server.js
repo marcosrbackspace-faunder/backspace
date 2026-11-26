@@ -4,7 +4,19 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 
-const db = require('./db');
+
+const db = require('./db');const fs = require('fs');
+const multer = require('multer');
+const UPLOAD_DIR = process.env.UPLOAD_DIR || path.join(__dirname, 'uploads');
+fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, UPLOAD_DIR),
+  filename: (req, file, cb) => cb(null, Date.now() + '-' + Math.round(Math.random() * 1e9) + path.extname(file.originalname).toLowerCase())
+});
+const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 }, fileFilter: (req, file, cb) => {
+  if (/^image\/(jpeg|png|gif|webp)$/.test(file.mimetype)) return cb(null, true);
+  cb(new Error('Only images allowed'));
+} });
 const { esc, page, THEMES } = require('./views/layout');
 const { loginForm, signupForm } = require('./views/auth');
 const { homePage } = require('./views/home');
