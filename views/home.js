@@ -35,7 +35,7 @@ function postCard(p, me) {
       <input name="body" maxlength="300" placeholder="Write a comment…" required>
       <button type="submit">Reply</button>
     </form>
-  </article>`;
+${p.image ? `<img src="${esc(p.image)}" style="max-width:100%;border-radius:10px;margin-top:10px">` : ''}  </article>`;
 }
 
 function homePage(user, posts, error) {
